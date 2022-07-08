@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NFT Viewer - VR</title>
+    <meta name="description" content="NFT Viewer app in VR mode">
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
+    <!-- <a-scene> -->
+      <a-assets>
+        <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">  
+      </a-assets>
+
+      <a-text value="Welcome to NFT Viewer VR!" position="-2 4 -5" color="#000" scale="2 2 2"></a-text>
+      <a-text value="Enter your Wallet Address to view your NFT Collections." position="-1.5 3.5 -5" color="#000"></a-text>
+
+      <a-box id="box1" position="-3 2.403 -5" rotation="0 90 30" scale="" color="#F44336"
+                  event-set__enter="_event: mouseenter; _target: #bg; color: #F44336">
+      </a-box>
+      <a-box id="box2" position="-1 2 -5" rotation="0 45 45" scale="0.75 0.75 0.75" color="#2196F3"
+                  event-set__enter="_event: mouseenter; _target: #bg; color: #2196F3">
+      </a-box>
+      <a-box id="box3" position="2 2 -4" rotation="0 45 30" scale="0.75 0.75 0.75" color="#009688"
+                  event-set__enter="_event: mouseenter; _target: #bg; color: #009688">            
+      </a-box>
+      <a-box id="box4" position="1 1.9894 -5" rotation="0 70 29.999999999999996" scale="0.9 0.9 0.9" color="#E91E63"
+                  event-set__enter="_event: mouseenter; _target: #bg; color: #E91E63">
+      </a-box>  
+
+      <a-plane id="image1" material="color: #ed7d7d" geometry="skipCache: false" position="3.56501 2.10719 -3.88761"></a-plane>
+      
+      <a-entity laser-controls="hand: left"></a-entity>
+      <a-entity laser-controls="hand: right"></a-entity>
+
+      <a-sky id="bg" color="#fff"></a-sky>
+
+      <a-plane src="#groundTexture" rotation="-90 0 0" width="50" height="50"></a-plane>
+        
+
+      <a-camera>
+        <a-cursor scale="0.8 0.8 0.8"></a-cursor>
+      </a-camera>
+    </a-scene>
+    <script src="index.js"></script>
+  </body>
+</html>
