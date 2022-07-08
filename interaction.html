@@ -29,10 +29,12 @@
                   event-set__enter="_event: mouseenter; _target: #bg; color: #E91E63">
       </a-box>  
 
-      <a-plane id="image1" material="color: #ed7d7d" geometry="skipCache: false" position="3.56501 2.10719 -3.88761"></a-plane>
+      <a-plane id="image1" material="color: #ed7d7d" position="3.56501 2.10719 -3.88761"></a-plane>
       
       <a-entity laser-controls="hand: left"></a-entity>
       <a-entity laser-controls="hand: right"></a-entity>
+      <a-entity id="leftHand" hand-controls="left"></a-entity>
+      <a-entity id="rightHand" hand-controls="right"></a-entity>  
 
       <a-sky id="bg" color="#fff"></a-sky>
 
