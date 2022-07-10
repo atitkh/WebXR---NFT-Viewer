@@ -15,40 +15,29 @@
       <a-assets>
         <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">  
       </a-assets>
-      <a-entity id="connectButton" geometry="primitive: box" material="color: red" position="0.97489 5.23878 -5.68612" scale="1.4357 0.45335 0.1"></a-entity>
+      <!-- Connect Button -->
+      <a-entity id="connectButton" position="0.97489 5.23878 -5.68612" scale="1 1 1">
+        <a-entity id="connectBox"geometry="primitive: box" material="color: red" scale="2.05464 0.61445 0.1" position="0 0 0"></a-entity>
+        <a-text id="connectText" position="-0.747 0 0.05454" text="color: #000000; value: Connect Wallet" value="Connect"></a-text>
+      </a-entity>
 
+
+<!-- Wallet Info -->
       <a-text value="Welcome to NFT Viewer VR!" position="-2 4 -5" color="#000" scale="2 2 2"></a-text>
       <a-text id="wallet-address" value="Account Address" position="-1.5 3.5 -5" color="#000"></a-text>
       <a-text id="wallet-balance" value="Account Balance" position="-1.5 3 -5" color="#000"></a-text>      
 
-      <a-box id="box1" position="-3 2.403 -5" rotation="0 90 30" scale="" color="#F44336"
-                  event-set__enter="_event: mouseenter; _target: #bg; color: #F44336">
-      </a-box>
-      <a-box id="box2" position="-1 2 -5" rotation="0 45 45" scale="0.75 0.75 0.75" color="#2196F3"
-                  event-set__enter="_event: mouseenter; _target: #bg; color: #2196F3">
-      </a-box>
-      <a-box id="box3" position="2 2 -4" rotation="0 45 30" scale="0.75 0.75 0.75" color="#009688"
-                  event-set__enter="_event: mouseenter; _target: #bg; color: #009688">            
-      </a-box>
-      <a-box id="box4" position="1 1.9894 -5" rotation="0 70 29.999999999999996" scale="0.9 0.9 0.9" color="#E91E63"
-                  event-set__enter="_event: mouseenter; _target: #bg; color: #E91E63">
-      </a-box>  
-
       <a-plane id="image1" geometry="skipCache: false" material="color: #ffffff; transparent: false" position="3.56501 2.10719 -3.88761"></a-plane>
+
+      <a-plane src="#groundTexture" rotation="-90 0 0" width="50" height="50"></a-plane>
       
+      <a-camera>
+        <a-cursor scale="0.8 0.8 0.8"></a-cursor>
+      </a-camera>
       <a-entity laser-controls="hand: left"></a-entity>
       <a-entity laser-controls="hand: right"></a-entity>
       <a-entity id="leftHand" hand-controls="left"></a-entity>
       <a-entity id="rightHand" hand-controls="right"></a-entity>
-
-      <a-sky id="bg" color="#fff"></a-sky>
-
-      <a-plane src="#groundTexture" rotation="-90 0 0" width="50" height="50"></a-plane>
-        
-
-      <a-camera>
-        <a-cursor scale="0.8 0.8 0.8"></a-cursor>
-      </a-camera>
     </a-scene>
     <script src="index.js"></script>
     <script src="web3.js"></script>
