@@ -36,8 +36,8 @@
       <!-- innteraction -->
       <a-entity>
         <a-camera id="camera" cursor="rayOrigin: mouse"></a-camera>
-        <a-entity id="leftHand" sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
-        <a-entity id="rightHand" sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity>
+        <a-entity id="leftHand" sphere-collider="objects: a-box" super-hands hand-controls="hand: left" laser-controls="hand: left"></a-entity>
+        <a-entity id="rightHand" sphere-collider="objects: a-box" super-hands hand-controls="hand: right" laser-controls="hand: right"></a-entity>
       </a-entity>
     </a-scene>
     <script src="index.js"></script>
