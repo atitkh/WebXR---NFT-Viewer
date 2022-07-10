@@ -18,10 +18,11 @@ function handleAccountsChanged(accounts) {
     console.log('Please connect to MetaMask.');
   } else if (accounts[0] !== currentAccount) {
     currentAccount = accounts[0];
-    accBalance = web3.eth.getBalance(currentAccount);
     hiddenAddress = currentAccount.substring(0, 5) + "..." + currentAccount.substring(currentAccount.length - 4, currentAccount.length);
     changeAttribute('#wallet-address', 'value', "Account: " + hiddenAddress);
-    changeAttribute('#wallet-balance', 'value', "Balance: " + (accBalance / (10 ** 18)).toFixed(4));
+    changeAttribute('#wallet-address', 'visible', "true");
+    getBalance();
+    //auto detect unit 
   }
 }
 
@@ -38,6 +39,19 @@ function connectWallet() {
           console.error(err);
         }
       });
+}
+
+function getBalance() {
+    ethereum.request({ method: 'eth_getBalance', params: [currentAccount, 'latest'] })
+    .then(function(result) {
+        accBalance = result;
+        console.log(accBalance);
+        changeAttribute('#wallet-balance', 'value', "Balance: " + (accBalance / (10 ** 18)).toFixed(4));
+        changeAttribute('#wallet-balance', 'visible', "true");
+    }
+    ).catch(function(err) {
+        console.log(err);
+    });
 }
 
 const changeAttribute = (objectID,attribue,value) => {
