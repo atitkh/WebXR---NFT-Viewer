@@ -10,22 +10,19 @@ $ = (queryString) => document.querySelector(queryString);
       });
 })();
 
+ethereum.on('chainChanged', (_chainId) => window.location.reload());
+
 function handleAccountsChanged(accounts) {
   if (accounts.length === 0) {
     // MetaMask is locked or the user has not connected any accounts
     console.log('Please connect to MetaMask.');
   } else if (accounts[0] !== currentAccount) {
     currentAccount = accounts[0];
-    accBalance = 0;
+    accBalance = web3.eth.getBalance(currentAccount);
     hiddenAddress = currentAccount.substring(0, 5) + "..." + currentAccount.substring(currentAccount.length - 4, currentAccount.length);
     changeAttribute('#wallet-address', 'value', "Account: " + hiddenAddress);
     changeAttribute('#wallet-balance', 'value', "Balance: " + (accBalance / (10 ** 18)).toFixed(4));
   }
-}
-
-function handleChainChanged(_chainId) {
-  // We recommend reloading the page, unless you must do otherwise
-  window.location.reload();
 }
 
 function connectWallet() {
