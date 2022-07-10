@@ -34,11 +34,10 @@
       <a-plane src="#groundTexture" position="0 1 0" rotation="-90 0 0" width="50" height="50"></a-plane>
       
       <!-- innteraction -->
-      <a-entity>
-        <a-camera id="camera" cursor="rayOrigin: mouse"></a-camera>
-        <a-entity id="leftHand" sphere-collider="objects: a-box" super-hands hand-controls="hand: left" laser-controls="hand: left"></a-entity>
-        <a-entity id="rightHand" sphere-collider="objects: a-box" super-hands hand-controls="hand: right" laser-controls="hand: right"></a-entity>
-      </a-entity>
+      <a-entity laser-controls="hand: left"></a-entity>
+      <a-entity laser-controls="hand: right"></a-entity>
+      <a-entity id="leftHand" hand-tracking-controls="hand: left;"></a-entity>
+      <a-entity id="rightHand" hand-tracking-controls="hand: right;"></a-entity>
     </a-scene>
     <script src="index.js"></script>
     <script src="web3.js"></script>
