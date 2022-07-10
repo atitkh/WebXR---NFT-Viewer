@@ -5,6 +5,9 @@
     <meta name="description" content="NFT Viewer app in VR mode">
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.1/web3.min.js"></script>
+    <script src="https://unpkg.com/@metamask/detect-provider/dist/detect-provider.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   </head>
   <body>
     <a-scene inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
@@ -12,9 +15,11 @@
       <a-assets>
         <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">  
       </a-assets>
+      <a-entity id="connectButton" geometry="primitive: box" material="color: red" position="0.97489 5.23878 -5.68612" scale="1.4357 0.45335 0.1"></a-entity>
 
       <a-text value="Welcome to NFT Viewer VR!" position="-2 4 -5" color="#000" scale="2 2 2"></a-text>
-      <a-text value="Enter your Wallet Address to view your NFT Collections." position="-1.5 3.5 -5" color="#000"></a-text>
+      <a-text id="wallet-address" value="Account Address" position="-1.5 3.5 -5" color="#000"></a-text>
+      <a-text id="wallet-balance" value="Account Balance" position="-1.5 3 -5" color="#000"></a-text>      
 
       <a-box id="box1" position="-3 2.403 -5" rotation="0 90 30" scale="" color="#F44336"
                   event-set__enter="_event: mouseenter; _target: #bg; color: #F44336">
@@ -46,5 +51,6 @@
       </a-camera>
     </a-scene>
     <script src="index.js"></script>
+    <script src="web3.js"></script>
   </body>
 </html>
