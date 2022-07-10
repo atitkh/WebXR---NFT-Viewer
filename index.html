@@ -16,18 +16,18 @@
         <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">  
       </a-assets>
       <!-- Connect Button -->
-      <a-entity id="connectButton" position="0.97489 5.23878 -5.68612" scale="1 1 1">
+      <a-entity id="connectButton" position="0.97489 2.05805 -5" scale="1 1 1">
         <a-entity id="connectBox"geometry="primitive: box" material="color: red" scale="2.05464 0.61445 0.1" position="0 0 0"></a-entity>
         <a-text id="connectText" position="-0.747 0 0.05454" text="color: #000000; value: Connect Wallet" value="Connect"></a-text>
       </a-entity>
 
 
 <!-- Wallet Info -->
-      <a-text value="Welcome to NFT Viewer VR!" position="-2 4 -5" color="#000" scale="2 2 2"></a-text>
+      <a-text id="heading" value="Welcome to NFT Viewer VR!" position="-2 4 -5" color="#000" scale="2 2 2"></a-text>
       <a-text id="wallet-address" value="Account Address" position="-1.5 3.5 -5" color="#000"></a-text>
       <a-text id="wallet-balance" value="Account Balance" position="-1.5 3 -5" color="#000"></a-text>      
 
-      <a-plane id="image1" geometry="skipCache: false" material="color: #ffffff; transparent: false" position="3.56501 2.10719 -3.88761"></a-plane>
+      <a-plane id="image1" geometry="skipCache: false" material="color: #ffffff; transparent: false; shader: flat" position="-2.65872 3.41389 -5"></a-plane>
 
       <a-plane src="#groundTexture" rotation="-90 0 0" width="50" height="50"></a-plane>
       
