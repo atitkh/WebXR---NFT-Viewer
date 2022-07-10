@@ -37,6 +37,8 @@ function connectWallet() {
           console.log('Please connect to MetaMask.');
         } else {
           console.error(err);
+          changeAttribute('#wallet-address', 'value', "Account: error");
+          changeAttribute('#wallet-address', 'visible', "true");
         }
       });
 }
@@ -51,6 +53,8 @@ function getBalance() {
     }
     ).catch(function(err) {
         console.log(err);
+        changeAttribute('#wallet-balance', 'value', "Balance: error");
+        changeAttribute('#wallet-balance', 'visible', "true");
     });
 }
 
