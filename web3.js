@@ -4,7 +4,7 @@ $ = (queryString) => document.querySelector(queryString);
 const scene = $('#mainScene');
 // import env variables from .env file
 require('dotenv').config();
-akapi_key = process.env.AKAPI_KEY;
+
 //anonymous async function to initialize await values
 (async () => {
 	//connectWallet function to connect wallet and get account address
@@ -78,6 +78,48 @@ function addImages(count){
         image.setAttribute('look-at', '#camera');
         scene.appendChild(image);
     }
+}
+
+function getNFTs(){
+  data = {
+    'address': currentAccount,
+    'auth': akapi_key
+  };
+  console.log(data);
+  // $.ajax({
+  //   type: "POST",
+  //   url: "/NFTPortal",
+  //   contentType: 'application/json;charset=UTF-8',
+  //   data: JSON.stringify(data),
+  //   success: function (response) {
+  //     console.log(response);
+  //     $("#table").empty();
+  //     //display the data in table
+  //     $("#table").append("<tr><th>ID</th><th>NFT Name</th><th>Blockchain</th><th>Description</th><th>NFT Image</th></tr>");
+  //     for (var i = 2; i < response.length; i++) {
+  //       if(response[i].error){
+  //         $("#error").empty();
+  //         $("#error").append("<p>" + response[i].error + "</p>");
+  //       }
+  //       if(response[i] == ""){
+  //         response[i].name = "N/A";
+  //         response[i].chain = "N/A";
+  //         response[i].description = "N/A";
+  //         response[i].img = "N/A";
+  //       }
+  //       $("#table").append("<tr><td>" + i + "</td><td>" 
+  //         + response[i].name + "</td><td>" 
+  //           + response[i].chain + "</td><td>" 
+  //             + response[i].description + "</td><td><img src='" 
+  //             + response[i].img + "'width=auto height='350'></td></tr>");
+  //     }
+  //   },
+  //   error: function (response) {
+  //     console.log(response);
+  //     $("#error").empty();
+  //     $("#error").append("<p>An Error Occured</p>");
+  //   }
+  // });
 }
 
 const changeAttribute = (objectID,attribue,value) => {
