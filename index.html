@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.1/web3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.misc.min.js"></script>
     <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
-    <script src="https://unpkg.com/aframe-look-at-component@0.8.x/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.x/dist/aframe-look-at-component.min.js"></script> 
   </head>
   <body>
     <a-scene id="mainScene" inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
@@ -41,7 +41,8 @@
         <a-entity id="rightController" superhands laser-controls="hand: right" hand-tracking-controls="hand: right;"></a-entity>
       </a-entity>
     </a-scene>
+    <script src="bundle.js"></script> <!-- bundle.js -->
     <script src="index.js"></script>
-    <script src="web3.js"></script>
+    <!-- <script src="web3.js"></script> -->
   </body>
 </html>

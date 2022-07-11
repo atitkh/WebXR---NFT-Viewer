@@ -1,9 +1,10 @@
 var account = null;
 let currentAccount = null
-
 $ = (queryString) => document.querySelector(queryString);
 const scene = $('#mainScene');
-
+// import env variables from .env file
+require('dotenv').config();
+akapi_key = process.env.AKAPI_KEY;
 //anonymous async function to initialize await values
 (async () => {
 	//connectWallet function to connect wallet and get account address
