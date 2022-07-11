@@ -1,13 +1,17 @@
 var account = null;
 let currentAccount = null
 $ = (queryString) => document.querySelector(queryString);
+const scene = $('#mainScene');
 
 //anonymous async function to initialize await values
 (async () => {
 	//connectWallet function to connect wallet and get account address
-	$('#connectButton').addEventListener('click', function (evt) {
+	addImages(10);
+  $('#connectButton').addEventListener('click', function (evt) {
+        
         connectWallet();
       });
+      
 })();
 
 ethereum.on('chainChanged', (_chainId) => window.location.reload());
@@ -56,6 +60,23 @@ function getBalance() {
         changeAttribute('#wallet-balance', 'value', "Balance: error");
         changeAttribute('#wallet-balance', 'visible', "true");
     });
+}
+
+function addImages(count){
+    for(let i = 0; i < count; i++){
+        let image = document.createElement('a-image');
+        // image.setAttribute('id', 'image' + i);
+        image.setAttribute('src', 'assets/vs-bot.png');
+        //variabe positions around the camera in a circle
+        let x = Math.cos(i * (2 * Math.PI / count)) * 2;
+        let y = 2
+        let z = Math.sin(i * (2 * Math.PI / count)) * 2;
+        let position = x + " " + y + " " + z;
+        image.setAttribute('position', position);
+        // let position = `${i+5} 4 -5`;
+        // image.setAttribute('position', position);
+        scene.appendChild(image);
+    }
 }
 
 const changeAttribute = (objectID,attribue,value) => {
