@@ -1,18 +1,17 @@
-var account = null;
-let currentAccount = null
+currentAccount = null;
+
 $ = (queryString) => document.querySelector(queryString);
 const scene = $('#mainScene');
-// import env variables from .env file
-require('dotenv').config();
 
 //anonymous async function to initialize await values
 (async () => {
 	//connectWallet function to connect wallet and get account address
-  $('#connectButton').addEventListener('click', function (evt) {
-        connectWallet();
-        addImages(10);
+  $('#connectButton').addEventListener('click', async () => {
+        await connectWallet();
+        nftArray = await getNFTs(currentAccount);
+        console.log(nftArray);
+        // addImages(nftArray.length, nftArray);
       });
-      
 })();
 
 ethereum.on('chainChanged', (_chainId) => window.location.reload());
@@ -28,7 +27,7 @@ function handleAccountsChanged(accounts) {
     changeAttribute('#wallet-address', 'visible', "true");
     changeAttribute('#connectButton','visible', 'false');
     getBalance();
-    //auto detect unit 
+    //auto detect unit
   }
 }
 
@@ -53,7 +52,6 @@ function getBalance() {
     ethereum.request({ method: 'eth_getBalance', params: [currentAccount, 'latest'] })
     .then(function(result) {
         accBalance = result;
-        console.log(accBalance);
         changeAttribute('#wallet-balance', 'value', "Balance: " + (accBalance / (10 ** 18)).toFixed(4));
         changeAttribute('#wallet-balance', 'visible', "true");
     }
@@ -64,62 +62,61 @@ function getBalance() {
     });
 }
 
-function addImages(count){
+function addImages(count, nftArray){
+  if (count > 0) {
     for(let i = 0; i < count; i++){
-        let image = document.createElement('a-image');
-        // image.setAttribute('id', 'image' + i);
-        image.setAttribute('src', 'assets/vs-bot.png');
-        //variabe positions around the camera in a circle
-        let x = Math.cos(i * (2 * Math.PI / count)) * 5;
-        let y = 2
-        let z = Math.sin(i * (2 * Math.PI / count)) * 5;
-        let position = x + " " + y + " " + z;
-        image.setAttribute('position', position);
-        image.setAttribute('look-at', '#camera');
-        scene.appendChild(image);
+      $('#no-nfts').setAttribute('visible', 'false');
+      console.log("adding image " + i);
+      let image = document.createElement('a-image');
+      // image.setAttribute('id', 'image' + i);
+      image.setAttribute('src', nftArray[i].img);
+      //variabe positions around the camera in a circle
+      let x = Math.cos(i * (2 * Math.PI / count)) * 5;
+      let y = 2
+      let z = Math.sin(i * (2 * Math.PI / count)) * 5;
+      let position = x + " " + y + " " + z;
+      image.setAttribute('position', position);
+      image.setAttribute('scale', '2 2 2');
+      image.setAttribute('look-at', '#camera');
+      scene.appendChild(image);
     }
+  }
+  else{
+    console.log("No NFTs found");
+    $('#no-nfts').setAttribute('visible', 'true');
+  }
 }
 
-function getNFTs(){
-  data = {
-    'address': currentAccount,
-    'auth': akapi_key
-  };
-  console.log(data);
-  // $.ajax({
-  //   type: "POST",
-  //   url: "/NFTPortal",
-  //   contentType: 'application/json;charset=UTF-8',
-  //   data: JSON.stringify(data),
-  //   success: function (response) {
-  //     console.log(response);
-  //     $("#table").empty();
-  //     //display the data in table
-  //     $("#table").append("<tr><th>ID</th><th>NFT Name</th><th>Blockchain</th><th>Description</th><th>NFT Image</th></tr>");
-  //     for (var i = 2; i < response.length; i++) {
-  //       if(response[i].error){
-  //         $("#error").empty();
-  //         $("#error").append("<p>" + response[i].error + "</p>");
-  //       }
-  //       if(response[i] == ""){
-  //         response[i].name = "N/A";
-  //         response[i].chain = "N/A";
-  //         response[i].description = "N/A";
-  //         response[i].img = "N/A";
-  //       }
-  //       $("#table").append("<tr><td>" + i + "</td><td>" 
-  //         + response[i].name + "</td><td>" 
-  //           + response[i].chain + "</td><td>" 
-  //             + response[i].description + "</td><td><img src='" 
-  //             + response[i].img + "'width=auto height='350'></td></tr>");
-  //     }
-  //   },
-  //   error: function (response) {
-  //     console.log(response);
-  //     $("#error").empty();
-  //     $("#error").append("<p>An Error Occured</p>");
-  //   }
-  // });
+async function getNFTs(address){
+  if(address !== null){
+    console.log("Account connected");
+    console.log("Getting NFTs for " + address);
+    
+    var nftArray = [];
+    // post req to api 
+    fetch('https://nft-viewer.atitkharel.com.np/NFTPortal', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(response => response.json())  // convert to json
+    .then(async (json) => {
+      for (let i = 2; i < json.length; i++) {
+        if (json[i].img != '') {
+          nftArray.push(json[i]);
+        }
+      }
+      // console.log(nftArray);
+      addImages(nftArray.length, nftArray);
+    })    //print data to console
+    .catch(err => console.log('Request Failed', err));
+    return nftArray;
+  }
+  else{
+    console.log("No account connected");
+  }
 }
 
 const changeAttribute = (objectID,attribue,value) => {
