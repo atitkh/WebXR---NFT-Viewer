@@ -1,15 +1,15 @@
 var account = null;
 let currentAccount = null
+
 $ = (queryString) => document.querySelector(queryString);
 const scene = $('#mainScene');
 
 //anonymous async function to initialize await values
 (async () => {
 	//connectWallet function to connect wallet and get account address
-	addImages(10);
   $('#connectButton').addEventListener('click', function (evt) {
-        
         connectWallet();
+        addImages(10);
       });
       
 })();
@@ -25,6 +25,7 @@ function handleAccountsChanged(accounts) {
     hiddenAddress = currentAccount.substring(0, 5) + "..." + currentAccount.substring(currentAccount.length - 4, currentAccount.length);
     changeAttribute('#wallet-address', 'value', "Account: " + hiddenAddress);
     changeAttribute('#wallet-address', 'visible', "true");
+    changeAttribute('#connectButton','visible', 'false');
     getBalance();
     //auto detect unit 
   }
@@ -68,13 +69,12 @@ function addImages(count){
         // image.setAttribute('id', 'image' + i);
         image.setAttribute('src', 'assets/vs-bot.png');
         //variabe positions around the camera in a circle
-        let x = Math.cos(i * (2 * Math.PI / count)) * 2;
+        let x = Math.cos(i * (2 * Math.PI / count)) * 5;
         let y = 2
-        let z = Math.sin(i * (2 * Math.PI / count)) * 2;
+        let z = Math.sin(i * (2 * Math.PI / count)) * 5;
         let position = x + " " + y + " " + z;
         image.setAttribute('position', position);
-        // let position = `${i+5} 4 -5`;
-        // image.setAttribute('position', position);
+        image.setAttribute('look-at', '#camera');
         scene.appendChild(image);
     }
 }
