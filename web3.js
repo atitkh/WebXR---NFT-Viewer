@@ -7,9 +7,8 @@ const scene = $('#mainScene');
 (async () => {
 	//connectWallet function to connect wallet and get account address
   $('#connectButton').addEventListener('click', async () => {
-        await connectWallet();
-        nftArray = await getNFTs(currentAccount);
-        console.log(nftArray);
+        connectWallet();
+        await getNFTs(currentAccount);
         // addImages(nftArray.length, nftArray);
       });
 })();
