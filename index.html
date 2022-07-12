@@ -9,8 +9,9 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.misc.min.js"></script>
     <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.x/dist/aframe-look-at-component.min.js"></script> 
-  </head>
-  <body>
+    <script src="Scripts/aframe-material/aframe-material.js"></script>
+  
+    <body>
     <a-scene id="mainScene" inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
       <a-entity environment="preset:tron;"></a-entity>
       
@@ -23,6 +24,11 @@
         <a-entity id="connectBox"geometry="primitive: box" material="color: red" scale="2.05464 0.61445 0.1" position="0 0 0"></a-entity>
         <a-text id="connectText" position="-0.747 0 0.05454" text="color: #000000; value: Connect Wallet" value="Connect"></a-text>
       </a-entity>
+      <!-- NFT Button -->
+      <a-entity id="nftButton" position="1 2 -5" scale="1 1 1" visible="false">
+        <a-entity id="nftbBox"geometry="primitive: box" material="color: red" scale="2.05464 0.61445 0.1" position="0 0 0"></a-entity>
+        <a-text id="nftbText" position="-0.6 0 0.05454" text="color: #000000; value: Search NFT" value="Connect"></a-text>
+      </a-entity>
 
 
 <!-- Wallet Info -->
@@ -34,16 +40,16 @@
       <a-plane id="image1" geometry="skipCache: false" material="color: #ffffff; transparent: false; shader: flat" position="1 5.5 -5"></a-plane>
 
       <a-plane src="#groundTexture" position="0 1 0" rotation="-90 0 0" width="50" height="50" visible="false"></a-plane>
-      
       <!-- innteraction -->
       <a-entity>
-        <a-camera id="camera" cursor="rayOrigin: mouse"></a-camera>
+        <a-entity> <a-camera id="camera" look-controls-enabled wasd-controls-enabled mouse-cursor></a-camera></a-entity>
+        <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
         <a-entity id="leftController" super-hands laser-controls="hand: left" hand-tracking-controls="hand: left;"></a-entity>
         <a-entity id="rightController" superhands laser-controls="hand: right" hand-tracking-controls="hand: right;"></a-entity>
       </a-entity>
     </a-scene>
     <!-- <script src="bundle.js"></script> -->
-    <script src="index.js"></script>
-    <script src="web3.js"></script>
+    <script src="./Scripts/index.js"></script>
+    <script src="./Scripts/web3.js"></script>
   </body>
 </html>

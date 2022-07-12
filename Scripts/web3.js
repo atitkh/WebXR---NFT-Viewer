@@ -7,10 +7,15 @@ const scene = $('#mainScene');
 (async () => {
 	//connectWallet function to connect wallet and get account address
   $('#connectButton').addEventListener('click', async () => {
-        connectWallet();
-        await getNFTs(currentAccount);
-        // addImages(nftArray.length, nftArray);
-      });
+    connectWallet();
+    changeAttribute('#nftButton','visible', 'true');
+    // addImages(nftArray.length, nftArray);
+  });
+  $('#nftButton').addEventListener('click', async () => {
+    //remove button
+    $('#nftButton').parentNode.removeChild($('#nftButton'));
+    getNFTs(currentAccount);
+  });
 })();
 
 ethereum.on('chainChanged', (_chainId) => window.location.reload());
@@ -25,6 +30,7 @@ function handleAccountsChanged(accounts) {
     changeAttribute('#wallet-address', 'value', "Account: " + hiddenAddress);
     changeAttribute('#wallet-address', 'visible', "true");
     changeAttribute('#connectButton','visible', 'false');
+    $('#connectButton').parentNode.removeChild($('#connectButton'));
     getBalance();
     //auto detect unit
   }
@@ -67,7 +73,7 @@ function addImages(count, nftArray){
       $('#no-nfts').setAttribute('visible', 'false');
       console.log("adding image " + i);
       let image = document.createElement('a-image');
-      // image.setAttribute('id', 'image' + i);
+      image.setAttribute('id', 'nftImage' + i);
       image.setAttribute('src', nftArray[i].img);
       //variabe positions around the camera in a circle
       let x = Math.cos(i * (2 * Math.PI / count)) * 5;
@@ -78,6 +84,33 @@ function addImages(count, nftArray){
       image.setAttribute('scale', '2 2 2');
       image.setAttribute('look-at', '#camera');
       scene.appendChild(image);
+    }
+  }
+  else{
+    console.log("No NFTs found");
+    $('#no-nfts').setAttribute('visible', 'true');
+  }
+}
+
+// add names to images
+function addNames(count, nftArray){
+  if (count > 0) {
+    for(let i = 0; i < count; i++){
+      $('#no-nfts').setAttribute('visible', 'false');
+      console.log("adding name " + i);
+      let name = document.createElement('a-text');
+      name.setAttribute('id', 'nftName' + i);
+      name.setAttribute('value', nftArray[i].name);
+      //variabe positions around the camera in a circle
+      let x = Math.cos(i * (2 * Math.PI / count)) * 5;
+      let y = 0.75;
+      let z = Math.sin(i * (2 * Math.PI / count)) * 5;
+      let position = x + " " + y + " " + z;
+      name.setAttribute('position', position);
+      name.setAttribute('align', 'center');
+      name.setAttribute('scale', '0.5 0.5 0.5');
+      name.setAttribute('look-at', '#camera');
+      scene.appendChild(name);
     }
   }
   else{
@@ -109,6 +142,7 @@ async function getNFTs(address){
       }
       // console.log(nftArray);
       addImages(nftArray.length, nftArray);
+      addNames(nftArray.length, nftArray);
     })    //print data to console
     .catch(err => console.log('Request Failed', err));
     return nftArray;
