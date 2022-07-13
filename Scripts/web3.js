@@ -123,10 +123,8 @@ async function getNFTs(address){
   if(address !== null){
     console.log("Account connected");
     console.log("Getting NFTs for " + address);
-    let api = readFile('./json/api.json');
     data = {
-      'address': address,
-      'auth': api.key
+      'address': address
     }
     var nftArray = [];
     // post req to NFT API 
@@ -154,14 +152,6 @@ async function getNFTs(address){
   else{
     console.log("No account connected");
   }
-}
-
-function readFile(file){
-  fetch(file)
-  .then(response => response.json())
-  .then(jsonResponse => console.log(jsonResponse))
-  .catch(err => console.log('Request Failed', err));
-  return jsonResponse;
 }
 
 const changeAttribute = (objectID,attribue,value) => {
