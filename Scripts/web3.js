@@ -128,7 +128,7 @@ async function getNFTs(address){
     }
     var nftArray = [];
     // post req to NFT API 
-    fetch('https://nft-viewer.atitkharel.com.np/NFTPortal', {
+    fetch('https://nftviewer.atitkharel.com.np/NFTPortal', {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain, */*',
