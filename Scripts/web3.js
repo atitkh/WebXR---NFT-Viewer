@@ -8,7 +8,6 @@ const scene = $('#mainScene');
 	//connectWallet function to connect wallet and get account address
   $('#connectButton').addEventListener('click', async () => {
     connectWallet();
-    changeAttribute('#nftButton','visible', 'true');
     // addImages(nftArray.length, nftArray);
   });
   $('#nftButton').addEventListener('click', async () => {
@@ -32,6 +31,7 @@ function handleAccountsChanged(accounts) {
     changeAttribute('#connectButton','visible', 'false');
     $('#connectButton').parentNode.removeChild($('#connectButton'));
     getBalance();
+    changeAttribute('#nftButton','visible', 'true');
     //auto detect unit
   }
 }
