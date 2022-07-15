@@ -7,3 +7,4 @@ const changeTexture = (objectID,texture) => {
 
 changeTexture('#titleImage', "assets/vs-bot.png");
 // requestAnimationFrame(animate);
+

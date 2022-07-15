@@ -10,47 +10,50 @@
     <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.x/dist/aframe-look-at-component.min.js"></script> 
     <script src="https://unpkg.com/aframe-locomotion@0.2.0/dist/aframe-locomotion.umd.min.js"></script>
+    <script src="https://unpkg.com/aframe-super-keyboard@1.0.0/dist/aframe-super-keyboard.min.js"></script>
     <script src="Scripts/aframe-material/aframe-material.js"></script>
   
     <body>
     <a-scene id="mainScene" inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
       <a-entity environment="preset:tron;"></a-entity>
-      
-    <!-- <a-scene> -->
+      <!-- innteraction -->
+      <a-entity id="rig">
+        <a-camera id="camera" wasd-controls="acceleration:20;"></a-camera>
+        <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
+        <a-entity id="leftController" super-hands laser-controls="hand: left" hand-tracking-controls="hand: left;" smooth-locomotion="target: #rig; reference: #camera"></a-entity>
+        <a-entity id="rightController" super-hands laser-controls="hand: right" hand-tracking-controls="hand: right;" snap-turn="target: #rig; reference: #camera"></a-entity>
+      </a-entity>
+      <!-- end of interaction -->
       <a-assets>
         <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">  
       </a-assets>
       <!-- Connect Button -->
-      <a-entity id="connectButton" position="1 2 -5" scale="1 1 1">
-        <a-entity id="connectBox"geometry="primitive: box" material="color: red" scale="2.05464 0.61445 0.1" position="0 0 0"></a-entity>
+      <a-entity id="connectButton" position="1 2 -5" scale="1 1 1" visible="true">
+        <a-entity id="connectBox" geometry="primitive: box" material="color: red" scale="2.05464 0.61445 0.1" position="0 0 0"></a-entity>
         <a-text id="connectText" position="-0.747 0 0.05454" text="color: #000000; value: Connect Wallet" value="Connect"></a-text>
       </a-entity>
       <!-- NFT Button -->
       <a-entity id="nftButton" position="1 2 -5" scale="1 1 1" visible="false">
-        <a-entity id="nftbBox"geometry="primitive: box" material="color: red" scale="2.05464 0.61445 0.1" position="0 0 0"></a-entity>
+        <a-entity id="nftbBox" geometry="primitive: box" material="color: red" scale="2.05464 0.61445 0.1" position="0 0 0"></a-entity>
         <a-text id="nftbText" position="-0.6 0 0.05454" text="color: #000000; value: Search NFTs" value="Search NFTs"></a-text>
       </a-entity>
-
+      <!-- <a-button id="connectButtonn" position="1 2 -2" color="white" value="Connect Wallet"></a-button> -->
 
 <!-- Wallet Info -->
       <a-text id="heading" value="Welcome to NFT Viewer VR!" position="-2 4.5 -5" color="#000" scale="2 2 2"></a-text>
       <a-text id="wallet-address" value="Account Address" position="-1.5 4 -5" color="#000" visible="false"></a-text>
       <a-text id="wallet-balance" value="Account Balance" position="-1.5 3.5 -5" color="#000" visible="false"></a-text>
       <a-text id="no-nfts" value="No NFTs Found" position="-1.5 3 -5" color="#000" visible="false"></a-text>      
-
+      
       <a-plane id="titleImage" geometry="skipCache: false" material="color: #ffffff; transparent: false; shader: flat" position="1 5.5 -5"></a-plane>
-
       <a-plane src="#groundTexture" position="0 1 0" rotation="-90 0 0" width="50" height="50" visible="false"></a-plane>
-      <!-- innteraction -->
-      <a-entity id="rig">
-        <a-camera id="camera" wasd-controls="acceleration:20;"></a-camera>
-        <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
-        <a-entity id="leftController" super-hands laser-controls="hand: left" hand-tracking-controls="hand: left;" smooth-locomotion="target: #rig; reference: #camera"></a-entity>
-        <a-entity id="rightController" superhands laser-controls="hand: right" hand-tracking-controls="hand: right;" snap-turn="target: #rig; reference: #camera"></a-entity>
-      </a-entity>
+      
+      <!-- keyboard -->
+      <a-entity id="keyboard" super-keyboard="imagePath:./assets/"  position="0 1.076 -0.5" rotation="-30 0 0"></a-entity>
     </a-scene>
     <!-- <script src="bundle.js"></script> -->
     <script src="./Scripts/index.js"></script>
     <script src="./Scripts/web3.js"></script>
+    <script src="./Scripts/keyboard.js"></script>
   </body>
 </html>
