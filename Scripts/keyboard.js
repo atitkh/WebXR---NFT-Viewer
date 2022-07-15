@@ -29,4 +29,5 @@ let input,
     $('#keyboard').setAttribute('super-keyboard', {show: false});
   });
 
+  // default keyboard value
   $('#keyboard').setAttribute('super-keyboard', {value: val});

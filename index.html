@@ -28,7 +28,7 @@
         <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">  
       </a-assets>
       <!-- Connect Button for non VR-->
-      <a-entity id="non-vr-entity" visible="false">
+      <a-entity id="non-vr-entity" visible="true">
         <a-entity id="connectButton" class="clickable" position="1 2 -5" scale="1 1 1" visible="true">
           <a-entity id="connectBox" geometry="primitive: box" material="color: red" scale="2.05464 0.61445 0.1" position="0 0 0"></a-entity>
           <a-text id="connectText" position="-0.747 0 0.05454" text="color: #000000; value: Connect Wallet" value="Connect"></a-text>
@@ -41,7 +41,7 @@
       </a-entity>
 
       <!-- Buttons for VR -->
-      <a-entity id="vr-entity" visible="true">
+      <a-entity id="vr-entity" visible="false">
         <a-input id="address-input" class="clickable" placeholder="Enter your address" position="0 3 -5" scale="2 2 2"></a-input>
         
         <a-entity id="nftButtonVR" class="clickable" position="1 2 -5" scale="1 1 1" visible="true">
