@@ -1,4 +1,5 @@
 currentAccount = null;
+mode = "non-vr";
 
 $ = (queryString) => document.querySelector(queryString);
 const scene = $('#mainScene');
@@ -6,16 +7,40 @@ const scene = $('#mainScene');
 //anonymous async function to initialize await values
 (async () => {
 	//connectWallet function to connect wallet and get account address
+
   $('#connectButton').addEventListener('click', async () => {
     connectWallet();
     // addImages(nftArray.length, nftArray);
   });
   $('#nftButton').addEventListener('click', async () => {
     //remove button
-    $('#nftButton').parentNode.removeChild($('#nftButton'));
+    $('#nftButton').setAttribute('visible', 'false');
+    $('#nftButton').classList.remove('clickable');
     getNFTs(currentAccount);
   });
 })();
+
+// check if mode is VR
+scene.addEventListener('enter-vr', function () {
+  console.log("ENTERED VR");
+  mode = "vr";
+  $('#non-vr-entity').setAttribute('visible', 'false');
+  $('#vr-entity').setAttribute('visible', 'true');
+  $('#nftButtonVR').addEventListener('click', async () => {
+    //remove button
+    address = $('#address-input').getAttribute('value');
+    $('#nftButtonVR').setAttribute('visible', 'false');
+    $('#nftButtonVR').classList.remove('clickable');
+    getNFTs(address);
+  });
+});
+
+scene.addEventListener('exit-vr', function () {
+  console.log("EXITED VR");
+  mode = "non-vr";
+  $('#non-vr-entity').setAttribute('visible', 'true');
+  $('#vr-entity').setAttribute('visible', 'false');
+});
 
 ethereum.on('chainChanged', (_chainId) => window.location.reload());
 
@@ -29,9 +54,10 @@ function handleAccountsChanged(accounts) {
     changeAttribute('#wallet-address', 'value', "Account: " + hiddenAddress);
     changeAttribute('#wallet-address', 'visible', "true");
     changeAttribute('#connectButton','visible', 'false');
-    $('#connectButton').parentNode.removeChild($('#connectButton'));
+    $('#connectButton').classList.remove('clickable')
     getBalance();
     changeAttribute('#nftButton','visible', 'true');
+    $('#nftButton').classList.add('clickable')
     //auto detect unit
   }
 }
