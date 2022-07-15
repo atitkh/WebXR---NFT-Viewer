@@ -15,6 +15,7 @@ const scene = $('#mainScene');
   $('#nftButton').addEventListener('click', async () => {
     //remove button
     $('#nftButton').setAttribute('visible', 'false');
+    $('#nftButton').parentNode.removeChild($('#nftButton'));
     $('#nftButton').classList.remove('clickable');
     getNFTs(currentAccount);
   });
