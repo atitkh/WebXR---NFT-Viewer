@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.misc.min.js"></script>
     <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.x/dist/aframe-look-at-component.min.js"></script> 
+    <script src="https://unpkg.com/aframe-locomotion@0.2.0/dist/aframe-locomotion.umd.min.js"></script>
     <script src="Scripts/aframe-material/aframe-material.js"></script>
   
     <body>
@@ -41,11 +42,11 @@
 
       <a-plane src="#groundTexture" position="0 1 0" rotation="-90 0 0" width="50" height="50" visible="false"></a-plane>
       <!-- innteraction -->
-      <a-entity>
-        <a-entity> <a-camera id="camera" wasd-controls="acceleration:20;"></a-camera></a-entity>
+      <a-entity id="rig">
+        <a-camera id="camera" wasd-controls="acceleration:20;"></a-camera>
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
-        <a-entity id="leftController" super-hands laser-controls="hand: left" hand-tracking-controls="hand: left;"></a-entity>
-        <a-entity id="rightController" superhands laser-controls="hand: right" hand-tracking-controls="hand: right;"></a-entity>
+        <a-entity id="leftController" super-hands laser-controls="hand: left" hand-tracking-controls="hand: left;" smooth-locomotion="target: #rig; reference: #camera"></a-entity>
+        <a-entity id="rightController" superhands laser-controls="hand: right" hand-tracking-controls="hand: right;" snap-turn="target: #rig; reference: #camera"></a-entity>
       </a-entity>
     </a-scene>
     <!-- <script src="bundle.js"></script> -->
