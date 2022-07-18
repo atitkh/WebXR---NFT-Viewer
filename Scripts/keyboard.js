@@ -6,14 +6,18 @@ let input,
 function handleKeyboardEvents(node) {
   node.addEventListener("superkeyboardchange", evt => {
     val = evt.detail.value;
+    $('#address-input').setAttribute('value', val);
     $('#keyboard').setAttribute('super-keyboard', {value: val});
-    $('a-input').setAttribute('value', val);
+    
   });
   node.addEventListener("superkeyboarddismiss", node => {
     console.log(node.components);
   });
-  node.addEventListener("superkeyboardinput", () => {});
+  node.addEventListener("superkeyboardinput", () => {
+
+  });
 }
+
 function handleInputClicked(node) {
   node.addEventListener("inputrequired", evt => {
     document.dispatchEvent(new Event("show"));
@@ -21,7 +25,7 @@ function handleInputClicked(node) {
 }
 
 //if tapped on input field show keyboard
-$('a-input').addEventListener('click', () => {
+$('#address-input').addEventListener('click', () => {
   $('#keyboard').setAttribute('super-keyboard', {show: true});
 });
 
@@ -32,4 +36,4 @@ $('#nftVRButton').addEventListener('click', () => {
 
 // default keyboard value
 $('#keyboard').setAttribute('super-keyboard', {value: val});
-$('#keyboard').setAttribute('super-keyboard', {show: false});
+$('#keyboard').setAttribute('super-keyboard', {show: true});

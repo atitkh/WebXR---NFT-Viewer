@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.x/dist/aframe-look-at-component.min.js"></script> 
     <script src="https://unpkg.com/aframe-locomotion@0.2.0/dist/aframe-locomotion.umd.min.js"></script>
-    <script src="https://unpkg.com/aframe-super-keyboard@1.0.0/dist/aframe-super-keyboard.min.js"></script>
+    <script src="https://unpkg.com/aframe-super-keyboard@2.1.0/dist/aframe-super-keyboard.min.js"></script>
     <script src="Scripts/aframe-material/aframe-material.js"></script>
   
     <body>
@@ -30,6 +30,8 @@
       <!-- Connect Button for non VR-->
       <a-entity id="non-vr-entity" visible="true">
         <a-etity></a-etity>
+        <a-input id="address-input" class="clickable" placeholder="Enter your address" position="0 3 -5" scale="2 2 2"></a-input>
+        <a-entity id="keyboard" super-keyboard="hand: #mouseCursor; show: false; imagePath:./assets/"  position="0 1.076 -0.5" rotation="-30 0 0"></a-entity>
         <a-entity id="connectButton" class="clickable" position="1 2 -5" scale="1 1 1" visible="true">
           <a-entity></a-entity>
           <a-entity id="connectBox" class="clickable" geometry="primitive: box" material="color: red" scale="2.05464 0.61445 0.1" position="0 0 0"></a-entity>
@@ -47,9 +49,6 @@
       <a-entity id="vr-entity" visible="false">
         <!-- input field -->
         <a-etity></a-etity>
-
-       <a-input id="address-input" class="clickable" placeholder="Enter your address" position="0 3 -5" scale="2 2 2"></a-input>
-        
         <!-- search button for vr -->
         <a-entity id="nftVRButton" position="1 2 -5" scale="1 1 1" visible="true">
           <a-entity></a-entity>
@@ -57,7 +56,7 @@
           <a-text id="nftVRText" class="clickable" position="-0.6 0 0.05454" text="color: #000000; value: Search NFTs" value="Search NFTs"></a-text>
         </a-entity>
         <!-- keyboard -->
-      <a-entity id="keyboard" super-keyboard="hand: #rightController; show: false; imagePath:./assets/"  position="0 1.076 -0.5" rotation="-30 0 0"></a-entity>
+      
       </a-entity>
       
       <!-- <a-button id="connectButtonn" position="1 2 -2" color="white" value="Connect Wallet"></a-button> -->
