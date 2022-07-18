@@ -15,23 +15,30 @@ const scene = $('#mainScene');
   $('#nftButton').addEventListener('click', async () => {
     //remove button
     $('#nftButton').setAttribute('visible', 'false');
-    $('#nftButton').parentNode.removeChild($('#nftButton'));
     $('#nftButton').classList.remove('clickable');
+    // $('#nftButton').parentNode.removeChild($('#nftButton'));
     getNFTs(currentAccount);
   });
 })();
 
-// check if mode is VR
+// check if mode is VR or not
 scene.addEventListener('enter-vr', function () {
   console.log("ENTERED VR");
   mode = "vr";
   $('#non-vr-entity').setAttribute('visible', 'false');
   $('#vr-entity').setAttribute('visible', 'true');
+  $('#connectButton').classList.remove('clickable');
+  $('#nftButton').classList.remove('clickable');
+  
+  $('#nftButtonVR').classList.add('clickable');
+
   $('#nftButtonVR').addEventListener('click', async () => {
     //remove button
     address = $('#address-input').getAttribute('value');
     $('#nftButtonVR').setAttribute('visible', 'false');
     $('#nftButtonVR').classList.remove('clickable');
+    $('#keyboard').setAttribute('super-keyboard', {hand: `#rightController`});
+    // $('#nftButtonVR').parentNode.removeChild($('#nftButtonVR'));
     getNFTs(address);
   });
 });
@@ -41,7 +48,13 @@ scene.addEventListener('exit-vr', function () {
   mode = "non-vr";
   $('#non-vr-entity').setAttribute('visible', 'true');
   $('#vr-entity').setAttribute('visible', 'false');
+  $('#connectButton').classList.add('clickable');
+  $('#nftButton').classList.add('clickable');
+  $('#nftButtonVR').classList.remove('clickable');
+  $('#keyboard').setAttribute('super-keyboard', {hand: `#mouseCursor`});
+  
 });
+//
 
 ethereum.on('chainChanged', (_chainId) => window.location.reload());
 
@@ -56,6 +69,8 @@ function handleAccountsChanged(accounts) {
     changeAttribute('#wallet-address', 'visible', "true");
     changeAttribute('#connectButton','visible', 'false');
     $('#connectButton').classList.remove('clickable')
+    $('#connectButton').parentNode.removeChild($('#connectButton'));
+    
     getBalance();
     changeAttribute('#nftButton','visible', 'true');
     $('#nftButton').classList.add('clickable')
