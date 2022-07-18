@@ -30,7 +30,7 @@ scene.addEventListener('enter-vr', function () {
   $('#vr-entity').setAttribute('visible', 'true');
   $('#nftVRButton').addEventListener('click', async () => {
     //remove button
-    // address = $('#address-input').getAttribute('value');
+    // address = $('#addressInput').getAttribute('value');
     address = $('#keyboard').getAttribute('super-keyboard');
     address = address['value'];
     // removeButtonClick('nftVR');
