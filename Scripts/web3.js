@@ -14,9 +14,7 @@ const scene = $('#mainScene');
   });
   $('#nftButton').addEventListener('click', async () => {
     //remove button
-    $('#nftButton').setAttribute('visible', 'false');
-    $('#nftButton').classList.remove('clickable');
-    // $('#nftButton').parentNode.removeChild($('#nftButton'));
+    removeButtonClick('nft');
     getNFTs(currentAccount);
   });
 })();
@@ -25,20 +23,18 @@ const scene = $('#mainScene');
 scene.addEventListener('enter-vr', function () {
   console.log("ENTERED VR");
   mode = "vr";
+  removeButtonClick('nft');
+  removeButtonClick('connect');
   $('#non-vr-entity').setAttribute('visible', 'false');
+  addButtonClick('nftVR');
   $('#vr-entity').setAttribute('visible', 'true');
-  $('#connectButton').classList.remove('clickable');
-  $('#nftButton').classList.remove('clickable');
-  
-  $('#nftButtonVR').classList.add('clickable');
-
-  $('#nftButtonVR').addEventListener('click', async () => {
+  $('#nftVRButton').addEventListener('click', async () => {
     //remove button
-    address = $('#address-input').getAttribute('value');
-    $('#nftButtonVR').setAttribute('visible', 'false');
-    $('#nftButtonVR').classList.remove('clickable');
-    $('#keyboard').setAttribute('super-keyboard', {hand: `#rightController`});
-    // $('#nftButtonVR').parentNode.removeChild($('#nftButtonVR'));
+    // address = $('#address-input').getAttribute('value');
+    address = $('#keyboard').getAttribute('super-keyboard');
+    address = address['value'];
+    // removeButtonClick('nftVR');
+    $('#keyboard').setAttribute('super-keyboard', {show: true});
     getNFTs(address);
   });
 });
@@ -46,13 +42,11 @@ scene.addEventListener('enter-vr', function () {
 scene.addEventListener('exit-vr', function () {
   console.log("EXITED VR");
   mode = "non-vr";
-  $('#non-vr-entity').setAttribute('visible', 'true');
+  removeButtonClick('nft')
+  removeButtonClick('nftVR');
   $('#vr-entity').setAttribute('visible', 'false');
-  $('#connectButton').classList.add('clickable');
-  $('#nftButton').classList.add('clickable');
-  $('#nftButtonVR').classList.remove('clickable');
-  $('#keyboard').setAttribute('super-keyboard', {hand: `#mouseCursor`});
-  
+  addButtonClick('connect');
+  $('#non-vr-entity').setAttribute('visible', 'true');
 });
 //
 
@@ -66,14 +60,10 @@ function handleAccountsChanged(accounts) {
     currentAccount = accounts[0];
     hiddenAddress = currentAccount.substring(0, 5) + "..." + currentAccount.substring(currentAccount.length - 4, currentAccount.length);
     changeAttribute('#wallet-address', 'value', "Account: " + hiddenAddress);
-    changeAttribute('#wallet-address', 'visible', "true");
-    changeAttribute('#connectButton','visible', 'false');
-    $('#connectButton').classList.remove('clickable')
-    $('#connectButton').parentNode.removeChild($('#connectButton'));
-    
+    changeAttribute('#wallet-address', 'visible', "true");    
     getBalance();
-    changeAttribute('#nftButton','visible', 'true');
-    $('#nftButton').classList.add('clickable')
+    removeButtonClick('connect');
+    addButtonClick('nft');
     //auto detect unit
   }
 }
@@ -198,4 +188,22 @@ async function getNFTs(address){
 
 const changeAttribute = (objectID,attribue,value) => {
     $(objectID).setAttribute(attribue, value);
+}
+
+const removeButtonClick = (name) => {
+  console.log("removing " + name);
+  $('#'+name+'Button').classList.remove('clickable');
+  $('#'+name+'Button').setAttribute('visible', 'false');
+  if(name === 'nft'){ name = 'nftb'; }
+  $('#'+name+'Box').classList.remove('clickable');
+  $('#'+name+'Text').classList.remove('clickable');
+}
+
+const addButtonClick = (name) => {
+  console.log("adding " + name);
+  $('#'+name+'Button').setAttribute('visible', 'true');
+  $('#'+name+'Button').classList.add('clickable');
+  if(name === 'nft'){ name = 'nftb'; }
+  $('#'+name+'Box').classList.add('clickable');
+  $('#'+name+'Text').classList.add('clickable');
 }
