@@ -129,9 +129,16 @@ function addImages(count, nftArray){
         let image = document.createElement('a-image');
         image.setAttribute('id', 'nftImage' + (i*10)+j);
         image.setAttribute('src', nftArray[((i*10)+j)].img);
-        let x = Math.cos(((i*10)+j) * (2 * Math.PI / 10)) * 6;
-        let z = Math.sin(((i*10)+j) * (2 * Math.PI / 10)) * 6;
-        let position = x + " " + y + " " + z;
+        if(count<10){
+          let x = Math.cos(((i*10)+j) * (2 * Math.PI / count)) * 6;
+          let z = Math.sin(((i*10)+j) * (2 * Math.PI / count)) * 6;
+          var position = x + " " + y + " " + z;
+        }
+        else{
+          let x = Math.cos(((i*10)+j) * (2 * Math.PI / 10)) * 6;
+          let z = Math.sin(((i*10)+j) * (2 * Math.PI / 10)) * 6;
+          var position = x + " " + y + " " + z;
+        }
         image.setAttribute('position', position);
         image.setAttribute('scale', '2 2 2');
         image.setAttribute('look-at', '#camera');
@@ -159,9 +166,16 @@ function addNames(count, nftArray){
         name.setAttribute('id', 'nftName' + ((i*10)+j));
         name.setAttribute('value', nftArray[((i*10)+j)].name);
         //variabe positions around the camera in a circle
-        let x = Math.cos(((i*10)+j) * (2 * Math.PI / 10)) * 6;
-        let z = Math.sin(((i*10)+j) * (2 * Math.PI / 10)) * 6;
-        let position = x + " " + y + " " + z;
+        if(count<10){
+          let x = Math.cos(((i*10)+j) * (2 * Math.PI / count)) * 6;
+          let z = Math.sin(((i*10)+j) * (2 * Math.PI / count)) * 6;
+          var position = x + " " + y + " " + z;
+        }
+        else{
+          let x = Math.cos(((i*10)+j) * (2 * Math.PI / 10)) * 6;
+          let z = Math.sin(((i*10)+j) * (2 * Math.PI / 10)) * 6;
+          var position = x + " " + y + " " + z;
+        }
         name.setAttribute('position', position);
         name.setAttribute('align', 'center');
         name.setAttribute('scale', '0.5 0.5 0.5');
