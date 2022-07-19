@@ -16,6 +16,7 @@
     <body>
     <a-scene id="mainScene" inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
       <a-entity environment="preset:tron;"></a-entity>
+
       <!-- innteraction -->
       <a-entity id="rig">
         <a-camera id="camera" wasd-controls="acceleration:20;"></a-camera>
@@ -24,9 +25,11 @@
         <a-entity id="rightController" super-hands laser-controls="hand: right" hand-tracking-controls="hand: right;" raycaster="objects: .clickable" snap-turn="target: #rig; reference: #camera"></a-entity>
       </a-entity>
       <!-- end of interaction -->
+
       <a-assets>
         <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">  
       </a-assets>
+
       <!-- Connect Button for non VR-->
       <a-entity id="non-vr-entity" visible="true">
         <a-etity></a-etity>
@@ -51,7 +54,7 @@
           <a-input id="addressInput" class="clickable" placeholder="Enter your address" position="0 3 -5" scale="2 2 2"></a-input>
         </a-form>
 
-        <a-entity id="keyboard" super-keyboard="hand: #rightController; show: false; imagePath:./assets/"  position="0 1.076 -0.5" rotation="-30 0 0"></a-entity>
+        <a-entity id="keyboard" super-keyboard="hand: #mouseCursor; show: false; imagePath:./assets/"  position="0 1.076 -0.5" rotation="-30 0 0"></a-entity>
         
         <!-- search button for vr -->
         <a-entity id="nftVRButton" position="1 2 -5" scale="1 1 1" visible="true">
@@ -71,6 +74,7 @@
       
       <a-plane id="titleImage" geometry="skipCache: false" material="color: #ffffff; transparent: false; shader: flat" position="1 5.5 -5"></a-plane>
       <a-plane src="#groundTexture" position="0 1 0" rotation="-90 0 0" width="50" height="50" visible="false"></a-plane>
+
     </a-scene>
     <!-- <script src="bundle.js"></script> -->
     <script src="./Scripts/index.js"></script>

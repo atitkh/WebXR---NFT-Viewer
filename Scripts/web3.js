@@ -23,18 +23,21 @@ const scene = $('#mainScene');
 scene.addEventListener('enter-vr', function () {
   console.log("ENTERED VR");
   mode = "vr";
+
   removeButtonClick('nft');
   removeButtonClick('connect');
   $('#non-vr-entity').setAttribute('visible', 'false');
+
   addButtonClick('nftVR');
   $('#vr-entity').setAttribute('visible', 'true');
+
   $('#nftVRButton').addEventListener('click', async () => {
     //remove button
     // address = $('#addressInput').getAttribute('value');
     address = $('#keyboard').getAttribute('super-keyboard');
     address = address['value'];
     // removeButtonClick('nftVR');
-    $('#keyboard').setAttribute('super-keyboard', {show: true});
+    $('#keyboard').setAttribute('super-keyboard', {show: false});
     getNFTs(address);
   });
 });
@@ -42,7 +45,7 @@ scene.addEventListener('enter-vr', function () {
 scene.addEventListener('exit-vr', function () {
   console.log("EXITED VR");
   mode = "non-vr";
-  removeButtonClick('nft')
+  removeButtonClick('nft');
   removeButtonClick('nftVR');
   $('#vr-entity').setAttribute('visible', 'false');
   addButtonClick('connect');
