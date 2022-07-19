@@ -34,8 +34,10 @@ scene.addEventListener('enter-vr', function () {
   $('#nftVRButton').addEventListener('click', async () => {
     //remove button
     // address = $('#addressInput').getAttribute('value');
-    address = $('#keyboard').getAttribute('super-keyboard');
+    let address = $('#keyboard').getAttribute('super-keyboard');
     address = address['value'];
+    changeAttribute('#wallet-address', 'value', "Account: " + address);
+    changeAttribute('#wallet-address', 'visible', "true");
     // removeButtonClick('nftVR');
     $('#keyboard').setAttribute('super-keyboard', {show: false});
     getNFTs(address);
