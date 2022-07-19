@@ -51,16 +51,22 @@
         <!-- input field -->
         <a-etity></a-etity>
         <a-form>
-          <a-input id="addressInput" class="clickable" placeholder="Enter your address" position="0 3 -5" scale="2 2 2"></a-input>
+          <a-input id="addressInput" class="clickable" placeholder="Enter your address" position="-0.75259 3 -5" scale="2 2 2"></a-input>
         </a-form>
 
         <a-entity id="keyboard" super-keyboard="hand: #mouseCursor; show: false; imagePath:./assets/"  position="0 1.076 -0.5" rotation="-30 0 0"></a-entity>
         
         <!-- search button for vr -->
-        <a-entity id="nftVRButton" position="1 2 -5" scale="1 1 1" visible="true">
+        <a-entity id="nftVRButton" position="-0.14639 2 -5" scale="1 1 1" visible="true">
           <a-entity></a-entity>
           <a-entity id="nftVRBox" class="clickable" geometry="primitive: box" material="color: red" scale="2.05464 0.61445 0.1" position="0 0 0"></a-entity>
           <a-text id="nftVRText" class="clickable" position="-0.6 0 0.05454" text="color: #000000; value: Search NFTs" value="Search NFTs"></a-text>
+        </a-entity>
+        
+        <a-entity id="clipboardButton" class="clickable" position="2.13764 2 -5" scale="1 1 1" visible="true">
+          <a-entity></a-entity>
+          <a-entity id="clipboardBox" class="clickable" geometry="primitive: box" material="color: red" scale="2.33467 0.61445 0.1" position="0 0 0"></a-entity>
+          <a-text id="clipboardText" class="clickable" position="-1.08624 0 0.05454" text="color: #000000; value: Paste From Clipboard" value="Paste From Clipboard"></a-text>
         </a-entity>
       </a-entity>
       

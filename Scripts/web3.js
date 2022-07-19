@@ -1,5 +1,6 @@
 currentAccount = null;
 mode = "non-vr";
+address = null;
 
 $ = (queryString) => document.querySelector(queryString);
 const scene = $('#mainScene');
@@ -29,20 +30,28 @@ scene.addEventListener('enter-vr', function () {
   $('#non-vr-entity').setAttribute('visible', 'false');
 
   addButtonClick('nftVR');
+  addButtonClick('clipboard');
   $('#vr-entity').setAttribute('visible', 'true');
 
   $('#nftVRButton').addEventListener('click', async () => {
     //remove button
     // address = $('#addressInput').getAttribute('value');
-    let address = $('#keyboard').getAttribute('super-keyboard');
-    address = address['value'];
+    address = $('#addressInput').getAttribute('value');
     changeAttribute('#addressInput', 'visible', "false");
     removeButtonClick('nftVR');
+    removeButtonClick('clipboard');
     changeAttribute('#wallet-address', 'value', "Account: " + address);
     changeAttribute('#wallet-address', 'visible', "true");
     // removeButtonClick('nftVR');
     $('#keyboard').setAttribute('super-keyboard', {show: false});
     getNFTs(address);
+  });
+
+  $('#clipboardButton').addEventListener('click', async () => {
+    //remove button
+    // address = $('#addressInput').getAttribute('value');
+    address = await navigator.clipboard.readText();
+    changeAttribute('#addressInput', 'value', address);
   });
 });
 
@@ -52,6 +61,7 @@ scene.addEventListener('exit-vr', function () {
 
   removeButtonClick('nft');
   removeButtonClick('nftVR');
+  removeButtonClick('clipboard');
   $('#vr-entity').setAttribute('visible', 'false');
 
   addButtonClick('connect');
