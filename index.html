@@ -21,8 +21,8 @@
       <a-entity id="rig">
         <a-camera id="camera" wasd-controls="acceleration:20;"></a-camera>
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse;" raycaster="objects: .clickable"></a-entity>
-        <a-entity id="leftController" super-hands laser-controls="hand: left" hand-tracking-controls="hand: left;" raycaster="objects: .clickable" smooth-locomotion="target: #rig; reference: #camera"></a-entity>
-        <a-entity id="rightController" super-hands laser-controls="hand: right" hand-tracking-controls="hand: right;" raycaster="objects: .clickable" snap-turn="target: #rig; reference: #camera"></a-entity>
+        <a-entity id="leftController" super-hands laser-controls="hand: left" hand-tracking-controls="hand: left;" raycaster="objects: .clickable" snap-turn="target: #rig; reference: #camera"></a-entity>
+        <a-entity id="rightController" super-hands laser-controls="hand: right" hand-tracking-controls="hand: right;" raycaster="objects: .clickable" smooth-locomotion="target: #rig; reference: #camera"></a-entity>
       </a-entity>
       <!-- end of interaction -->
 
@@ -67,12 +67,13 @@
       <!-- <a-button id="connectButtonn" position="1 2 -2" color="white" value="Connect Wallet"></a-button> -->
 
     <!-- Wallet Info -->
+      <a-plane id="titleImage" geometry="skipCache: false" material="color: #ffffff; transparent: false; shader: flat" position="1 5.5 -5"></a-plane>
+
       <a-text id="heading" value="Welcome to NFT Viewer VR!" position="-2 4.5 -5" color="#000" scale="2 2 2"></a-text>
       <a-text id="wallet-address" value="Account Address" position="-1.5 4 -5" color="#000" visible="false"></a-text>
       <a-text id="wallet-balance" value="Account Balance" position="-1.5 3.5 -5" color="#000" visible="false"></a-text>
       <a-text id="no-nfts" value="No NFTs Found" position="-1.5 3 -5" color="#000" visible="false"></a-text>      
       
-      <a-plane id="titleImage" geometry="skipCache: false" material="color: #ffffff; transparent: false; shader: flat" position="1 5.5 -5"></a-plane>
       <a-plane src="#groundTexture" position="0 1 0" rotation="-90 0 0" width="50" height="50" visible="false"></a-plane>
 
     </a-scene>

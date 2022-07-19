@@ -36,6 +36,8 @@ scene.addEventListener('enter-vr', function () {
     // address = $('#addressInput').getAttribute('value');
     let address = $('#keyboard').getAttribute('super-keyboard');
     address = address['value'];
+    changeAttribute('#addressInput', 'visible', "false");
+    removeButtonClick('nftVR');
     changeAttribute('#wallet-address', 'value', "Account: " + address);
     changeAttribute('#wallet-address', 'visible', "true");
     // removeButtonClick('nftVR');
@@ -47,9 +49,11 @@ scene.addEventListener('enter-vr', function () {
 scene.addEventListener('exit-vr', function () {
   console.log("EXITED VR");
   mode = "non-vr";
+
   removeButtonClick('nft');
   removeButtonClick('nftVR');
   $('#vr-entity').setAttribute('visible', 'false');
+
   addButtonClick('connect');
   $('#non-vr-entity').setAttribute('visible', 'true');
 });
