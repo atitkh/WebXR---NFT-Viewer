@@ -132,7 +132,7 @@ function addImages(count, nftArray){
         console.log("adding image " + ((i*10)+j));
         let image = document.createElement('a-image');
         image.setAttribute('id', 'nftImage' + (i*10)+j);
-        image.setAttribute('src', nftArray[((i*10)+j)].img);
+        image.setAttribute('src', 'https://arjs-cors-proxy.herokuapp.com/'+nftArray[((i*10)+j)].img);
         let x = Math.cos(((i*10)+j) * (2 * Math.PI / column)) * 6;
         let z = Math.sin(((i*10)+j) * (2 * Math.PI / column)) * 6;
         var position = x + " " + y + " " + z;
