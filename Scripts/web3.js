@@ -192,7 +192,7 @@ async function getNFTs(address){
     var nftArray = [];
     // post req to NFT API 
     fetch(`https://api.atitkharel.com.np/nft/all?address=${address}`, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
