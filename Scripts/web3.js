@@ -132,7 +132,7 @@ function addImages(count, nftArray){
         console.log("adding image " + ((i*10)+j));
         let image = document.createElement('a-image');
         image.setAttribute('id', 'nftImage' + (i*10)+j);
-        image.setAttribute('src', 'https://arjs-cors-proxy.herokuapp.com/'+nftArray[((i*10)+j)].img);
+        image.setAttribute('src', 'https://arjs-cors-proxy.herokuapp.com/'+nftArray[((i*10)+j)].file_url);
         let x = Math.cos(((i*10)+j) * (2 * Math.PI / column)) * 6;
         let z = Math.sin(((i*10)+j) * (2 * Math.PI / column)) * 6;
         var position = x + " " + y + " " + z;
@@ -189,22 +189,18 @@ async function getNFTs(address){
   if(address !== null){
     console.log("Account connected");
     console.log("Getting NFTs for " + address);
-    data = {
-      'address': address
-    }
     var nftArray = [];
     // post req to NFT API 
-    fetch('https://nftviewer.atitkharel.com.np/NFTPortal', {
+    fetch(`https://api.atitkharel.com.np/nft/all?address=${address}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
+      }
     }).then(response => response.json())  // convert to json
     .then(async (json) => {
-      for (let i = 2; i < json.length; i++) {
-        if (json[i].img != '') {
+      for (let i = 0; i < (json.length - 1); i++) {
+        if (json[i].file_url != '') {
           nftArray.push(json[i]);
         }
       }
