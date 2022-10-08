@@ -139,6 +139,7 @@ function addImages(count, nftArray){
         image.setAttribute('position', position);
         image.setAttribute('scale', '2 2 2');
         image.setAttribute('look-at', '#camera');
+        image.setAttribute('crossorigin', 'anonymous');
         scene.appendChild(image);
       }
       y = y + 3;
